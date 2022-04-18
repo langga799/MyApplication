@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">MovieAPP</string>
+    <string name="menu_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_home">MovieAPP</string>
+    <string name="title_search">Search</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title">Naruto Shippuden (2007)</string>
+    <string name="genre">Genre</string>
+    <string name="date">Februari 15, 2007</string>
+    <string name="separator">|</string>
+    <string name="rating">8.6</string>
+    <string name="description">Description</string>
+    <string name="content_description">Naruto Shippuuden adalah kelanjutan dari serial TV animasi asli Naruto. Kisah ini berkisah tentang Uzumaki Naruto yang lebih tua dan sedikit lebih matang dan upayanya untuk menyelamatkan temannya Uchiha Sasuke dari cengkeraman Shinobi seperti ular, Orochimaru. Setelah 2 setengah tahun, Naruto akhirnya kembali ke desanya Konoha, dan mulai mewujudkan ambisinya, meskip</string>
+    <string name="movie_catalog">Movie Catalog</string>
+    <string name="no_data_available_now">No data available now!</string>
+    <string name="release_date">Release Date</string>
+    <string name="popularity">Popularity</string>
+    <string name="popularity_value">8817.063</string>
+    <string name="image_poster_detail">Image Poster Detail</string>
+    <string name="poster_image">Poster Image</string>
+    <string name="icon_rating">Icon Rating</string>
+    <string name="fab_favorites">Fab Favorites</string>
+    <string name="error_message">Please check connection</string>
+    <string name="no_result_message">No result...</string>
+    <string name="check_spinner">check_spinner</string>
+    <string name="logo_app">Logo App</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="favorite_movie">Favorite Movie</string>
+
+    <string-array name="filter_item">
+        <item>Newest</item>
+        <item>Oldest</item>
+        <item>Rating</item>
+    </string-array>
+
+</resources>

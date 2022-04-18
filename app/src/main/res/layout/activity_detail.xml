@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail.DetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/page_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp">
+
+            <ImageView
+                android:id="@+id/iv_background_detail"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:contentDescription="@string/image_poster_detail"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/naruto_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="#92000000"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background_detail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_background_detail" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginEnd="24dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_poster_detail"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/poster_image"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/naruto_img" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/tv_title_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/title"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                        app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="80dp"
+                        android:text="@string/popularity"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+                    <TextView
+                        android:id="@+id/tv_popularity_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/popularity_value"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/tv_date_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/date"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_rating_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/rating"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:contentDescription="@string/icon_rating"
+                        android:src="@drawable/ic_round_star_24"
+                        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_detail" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/description"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_popularity_detail" />
+
+                    <TextView
+                        android:id="@+id/description_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="50dp"
+                        android:text="@string/content_description"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/red_200"
+                        android:contentDescription="@string/fab_favorites"
+                        android:elevation="0dp"
+                        android:src="@drawable/ic_favorite_border"
+                        android:tint="@color/white"
+                        app:borderWidth="0dp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                        app:rippleColor="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.tuyenmonkey.mkloader.MKLoader
+        android:id="@+id/loading_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mk_color="@color/red_200"
+        app:mk_type="Sharingan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
