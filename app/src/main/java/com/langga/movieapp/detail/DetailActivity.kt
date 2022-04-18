@@ -12,6 +12,7 @@ import com.langga.movieapp.core.utils.loadImage
 import com.langga.movieapp.databinding.ActivityDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding

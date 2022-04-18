@@ -4,7 +4,6 @@ import android.util.Log
 import com.langga.movieapp.core.BuildConfig
 import com.langga.movieapp.core.data.source.remote.network.ApiResponse
 import com.langga.movieapp.core.data.source.remote.network.ApiService
-import com.langga.movieapp.core.data.source.remote.response.ListMovieResponse
 import com.langga.movieapp.core.data.source.remote.response.ResultMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

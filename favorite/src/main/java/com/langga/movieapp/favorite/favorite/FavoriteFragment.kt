@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.langga.movieapp.core.data.source.Resource
 import com.langga.movieapp.core.ui.MovieAdapter
 import com.langga.movieapp.detail.DetailActivity
-import com.langga.movieapp.favorite.R
 import com.langga.movieapp.favorite.databinding.FragmentFavoriteBinding
 import com.langga.movieapp.favorite.di.favoriteModule
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -27,7 +25,7 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
