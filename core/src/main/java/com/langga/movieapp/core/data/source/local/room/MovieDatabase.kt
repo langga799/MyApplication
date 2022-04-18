@@ -8,6 +8,6 @@ import com.langga.movieapp.core.data.source.local.entity.MovieEntity
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun daoMovie(): DaoMovie
-    
+
 }
 
