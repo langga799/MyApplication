@@ -21,6 +21,7 @@
         android:id="@+id/navigation_favorite"
         android:name="com.langga.movieapp.favorite.favorite.FavoriteFragment"
         android:label="@string/favorite_movie"
-        app:moduleName="My_Application.favorite" />
+        tools:layout="@layout/fragment_favorite"
+       />
 
 </navigation>

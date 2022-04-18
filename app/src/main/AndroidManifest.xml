@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".detail.DetailActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DashboardActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_dashboard" />
         <activity
             android:name=".SplashScreenActivity"
