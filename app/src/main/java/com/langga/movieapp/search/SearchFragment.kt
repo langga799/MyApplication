@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.langga.movieapp.R
 import com.langga.movieapp.core.ui.MovieAdapter
 import com.langga.movieapp.core.utils.gone
-import com.langga.movieapp.core.utils.toast
 import com.langga.movieapp.core.utils.visible
 import com.langga.movieapp.databinding.FragmentSearchBinding
 import com.langga.movieapp.detail.DetailActivity
@@ -21,39 +20,46 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBinding
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding
+
     private val viewModel: SearchViewModel by viewModel()
-    private lateinit var movieAdapter: MovieAdapter
+    private val movieAdapter: MovieAdapter by lazy { MovieAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
-        return binding.root
+        _binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.searchMovie.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                searchQuery(query.orEmpty())
-                return true
-            }
+        binding?.apply {
+            searchData.visible()
+            noResult.gone()
+            tvNoResult.gone()
+            searchMovie.setOnQueryTextListener(object :
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    searchQuery(query.orEmpty())
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchQuery(newText.orEmpty())
-                return true
-            }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    searchQuery(newText.orEmpty())
+                    return true
+                }
 
-        })
+            })
+        }
 
 
-        movieAdapter = MovieAdapter()
-        binding.rvSearchMovie.apply {
+        // movieAdapter = MovieAdapter()
+        binding?.rvSearchMovie?.apply {
             layoutManager = GridLayoutManager(requireActivity(), 2)
             adapter = movieAdapter
             setHasFixedSize(true)
@@ -82,19 +88,23 @@ class SearchFragment : Fragment() {
     private fun searchQuery(text: String) {
         val inputText = "%$text%"
         viewModel.searchMovie(inputText).observe(viewLifecycleOwner) { resultSearching ->
-            movieAdapter.setDataMovies(resultSearching)
+
             when {
                 resultSearching.isNullOrEmpty() -> {
-                    binding.apply {
+                    binding?.apply {
                         rvSearchMovie.gone()
+                        searchData.gone()
                         noResult.visible()
-                        resources.getString(R.string.no_result_message).toast(requireActivity())
+                        tvNoResult.visible()
                     }
                 }
                 else -> {
-                    binding.apply {
+                    binding?.apply {
+                        movieAdapter.setDataMovies(resultSearching)
                         rvSearchMovie.visible()
+                        searchData.gone()
                         noResult.gone()
+                        tvNoResult.gone()
                     }
                 }
             }
@@ -107,6 +117,23 @@ class SearchFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        binding?.rvSearchMovie?.adapter = null
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        binding?.rvSearchMovie?.adapter = null
+        _binding = null
+        super.onDestroy()
+    }
+
+    override fun onDetach() {
+        binding?.rvSearchMovie?.adapter = null
+        super.onDetach()
     }
 
 

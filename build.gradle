@@ -28,6 +28,8 @@ buildscript {
 
     ext.mKLoader = '1.4.0'
     ext.leak_canary = '2.8.1'
+
+    ext.lottie_version = '3.4.1'
 }
 
 plugins {

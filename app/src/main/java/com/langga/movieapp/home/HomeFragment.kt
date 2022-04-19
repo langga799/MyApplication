@@ -16,7 +16,6 @@ import com.langga.movieapp.core.data.source.Resource
 import com.langga.movieapp.core.ui.MovieAdapter
 import com.langga.movieapp.core.utils.Sorting
 import com.langga.movieapp.core.utils.gone
-import com.langga.movieapp.core.utils.toast
 import com.langga.movieapp.core.utils.visible
 import com.langga.movieapp.databinding.FragmentHomeBinding
 import com.langga.movieapp.detail.DetailActivity
@@ -25,24 +24,29 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding
+
     private val viewModel: HomeViewModel by viewModel()
-    private val adapter = MovieAdapter()
+    private var adapter: MovieAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        return binding.root
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loadingHome.gone()
-        binding.apply {
+        adapter = MovieAdapter()
+        binding?.apply {
+            loadingHome.gone()
+            tvErrorMessage.gone()
+
             rvMovie.layoutManager = GridLayoutManager(requireActivity(), 2)
             rvMovie.setHasFixedSize(true)
             rvMovie.adapter = adapter
@@ -52,10 +56,10 @@ class HomeFragment : Fragment() {
                     val navigation = activity?.findViewById<BottomNavigationView>(R.id.nav_view)!!
                     when {
                         dy > 0 && navigation.isShown -> {
-                            navigation.visibility = View.GONE
+                            navigation.gone()
                         }
                         dy < 0 -> {
-                            navigation.visibility = View.VISIBLE
+                            navigation.visible()
                         }
                     }
                     super.onScrolled(recyclerView, dx, dy)
@@ -65,17 +69,17 @@ class HomeFragment : Fragment() {
         }
 
 
-        val spinner = binding.spinnerFilterMovie
+        val spinner = binding?.spinnerFilterMovie
         ArrayAdapter.createFromResource(
             requireActivity(),
             R.array.filter_item,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+            spinner?.adapter = adapter
         }
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View?,
@@ -106,17 +110,21 @@ class HomeFragment : Fragment() {
 
 
     private fun getMovies(query: String) {
-        viewModel.getAllMovie(query).observe(viewLifecycleOwner) { movie ->
+        viewModel.getAllMovie(query).observe(this) { movie ->
             if (movie != null) {
                 when (movie) {
-                    is Resource.Loading -> binding.loadingHome.visible()
+                    is Resource.Loading -> {
+                        binding?.loadingHome?.visible()
+                        binding?.tvErrorMessage?.gone()
+                    }
                     is Resource.Success -> {
-                        adapter.setDataMovies(movie.data)
-                        binding.loadingHome.gone()
+                        adapter?.setDataMovies(movie.data)
+                        binding?.loadingHome?.gone()
+                        binding?.tvErrorMessage?.gone()
                     }
                     is Resource.Error -> {
-                        binding.loadingHome.gone()
-                        resources.getString(R.string.error_message).toast(requireActivity())
+                        binding?.loadingHome?.gone()
+                        binding?.tvErrorMessage?.visible()
                     }
                 }
             }
@@ -125,12 +133,37 @@ class HomeFragment : Fragment() {
 
 
     private fun onItemCLickMovie() {
-        adapter.onItemClick = { clickItem ->
+        adapter?.onItemClick = { clickItem ->
             val intent = Intent(activity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, clickItem)
             startActivity(intent)
         }
     }
 
+//    override fun onStop() {
+//        binding?.rvMovie?.adapter = null
+//        super.onStop()
+//    }
+//
+//    override fun onResume() {
+//        binding?.rvMovie?.adapter = adapter
+//        super.onResume()
+//    }
+
+    override fun onDestroyView() {
+        adapter = null
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        //  binding?.rvMovie?.adapter = null
+        _binding = null
+        super.onDestroy()
+    }
+
+    override fun onDetach() {
+        //  binding?.rvMovie?.adapter = null
+        super.onDetach()
+    }
 
 }

@@ -3,7 +3,6 @@ package com.langga.movieapp.core.utils
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -24,10 +23,6 @@ fun View.visible() {
 
 fun View.gone() {
     visibility = View.GONE
-}
-
-fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
-    return Toast.makeText(context, this.toString(), duration).apply { show() }
 }
 
 object Sorting {

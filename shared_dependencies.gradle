@@ -21,5 +21,7 @@ dependencies {
     implementation "com.tuyenmonkey:mkloader:$mKLoader"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary"
 
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
 
 }

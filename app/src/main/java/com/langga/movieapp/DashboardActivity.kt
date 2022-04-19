@@ -11,15 +11,15 @@ import com.langga.movieapp.databinding.ActivityDashboardBinding
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDashboardBinding
+    private var _binding: ActivityDashboardBinding? = null
+    private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
-        binding = ActivityDashboardBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val navView: BottomNavigationView = binding.navView
+        val navView: BottomNavigationView? = binding?.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_dashboard)
 
@@ -29,6 +29,22 @@ class DashboardActivity : AppCompatActivity() {
             R.id.navigation_favorite
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        navView?.setupWithNavController(navController)
+
+        navView?.setOnItemReselectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> return@setOnItemReselectedListener
+                R.id.navigation_search -> return@setOnItemReselectedListener
+                R.id.navigation_favorite -> return@setOnItemReselectedListener
+            }
+        }
     }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
+
+
+
 }
