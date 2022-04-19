@@ -23,10 +23,10 @@ data class MovieEntity(
     var popularity: Double,
 
     @ColumnInfo(name = "poster")
-    var posterPath: String,
+    var posterPath: String? = null,
 
     @ColumnInfo(name = "backdrop")
-    var backdropPath: String,
+    var backdropPath: String? = null,
 
     @ColumnInfo(name = "date")
     var releaseDate: String,

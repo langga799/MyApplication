@@ -1,4 +1,8 @@
 # Add project specific ProGuard rules here.
+
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
 #
