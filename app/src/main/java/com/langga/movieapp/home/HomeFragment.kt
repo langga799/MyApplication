@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding
 
     private val viewModel: HomeViewModel by viewModel()
-    private var adapter: MovieAdapter? = null
+    private val adapter by lazy { MovieAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MovieAdapter()
         binding?.apply {
             loadingHome.gone()
             tvErrorMessage.gone()
@@ -118,7 +117,7 @@ class HomeFragment : Fragment() {
                         binding?.tvErrorMessage?.gone()
                     }
                     is Resource.Success -> {
-                        adapter?.setDataMovies(movie.data)
+                        adapter.setDataMovies(movie.data)
                         binding?.loadingHome?.gone()
                         binding?.tvErrorMessage?.gone()
                     }
@@ -133,37 +132,22 @@ class HomeFragment : Fragment() {
 
 
     private fun onItemCLickMovie() {
-        adapter?.onItemClick = { clickItem ->
+        adapter.onItemClick = { clickItem ->
             val intent = Intent(activity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, clickItem)
             startActivity(intent)
         }
     }
 
-//    override fun onStop() {
-//        binding?.rvMovie?.adapter = null
-//        super.onStop()
-//    }
-//
-//    override fun onResume() {
-//        binding?.rvMovie?.adapter = adapter
-//        super.onResume()
-//    }
-
     override fun onDestroyView() {
-        adapter = null
+        binding?.rvMovie?.adapter = null
+        _binding = null
         super.onDestroyView()
     }
 
     override fun onDestroy() {
-        //  binding?.rvMovie?.adapter = null
         _binding = null
         super.onDestroy()
-    }
-
-    override fun onDetach() {
-        //  binding?.rvMovie?.adapter = null
-        super.onDetach()
     }
 
 }

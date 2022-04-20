@@ -2,7 +2,6 @@ package com.langga.movieapp.favorite.favorite
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,8 +89,8 @@ class FavoriteFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        _binding = null
         binding?.rvMovieFavorite?.adapter = null
+        _binding = null
         super.onDestroyView()
     }
 
@@ -99,11 +98,6 @@ class FavoriteFragment : Fragment() {
         binding?.rvMovieFavorite?.adapter = null
         _binding = null
         super.onDestroy()
-    }
-
-    override fun onDetach() {
-        binding?.rvMovieFavorite?.adapter = null
-        super.onDetach()
     }
 
 

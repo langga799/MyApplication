@@ -58,7 +58,6 @@ class SearchFragment : Fragment() {
         }
 
 
-        // movieAdapter = MovieAdapter()
         binding?.rvSearchMovie?.apply {
             layoutManager = GridLayoutManager(requireActivity(), 2)
             adapter = movieAdapter
@@ -120,8 +119,8 @@ class SearchFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        _binding = null
         binding?.rvSearchMovie?.adapter = null
+        _binding = null
         super.onDestroyView()
     }
 
@@ -130,12 +129,6 @@ class SearchFragment : Fragment() {
         _binding = null
         super.onDestroy()
     }
-
-    override fun onDetach() {
-        binding?.rvSearchMovie?.adapter = null
-        super.onDetach()
-    }
-
 
 }
 

@@ -39,12 +39,10 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
     }
-
+    
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }
-
-
 
 }
