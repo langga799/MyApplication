@@ -88,17 +88,17 @@ class FavoriteFragment : Fragment() {
 
     }
 
-//    override fun onDestroyView() {
-//        binding?.rvMovieFavorite?.adapter = null
-//        _binding = null
-//        super.onDestroyView()
-//    }
-//
-//    override fun onDestroy() {
-//        binding?.rvMovieFavorite?.adapter = null
-//        _binding = null
-//        super.onDestroy()
-//    }
+    override fun onDestroyView() {
+        binding?.rvMovieFavorite?.adapter = null
+        _binding = null
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        binding?.rvMovieFavorite?.adapter = null
+        _binding = null
+        super.onDestroy()
+    }
 
 
 }
