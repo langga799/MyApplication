@@ -1,6 +1,7 @@
 package com.langga.movieapp
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -38,6 +39,10 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.navigation_favorite -> return@setOnItemReselectedListener
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finishAfterTransition()
     }
     
     override fun onDestroy() {
